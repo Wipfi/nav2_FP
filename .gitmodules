@@ -2,3 +2,6 @@
 	path = src/fixposition_driver
 	url = https://github.com/fixposition/fixposition_driver.git
 
+[submodule "src/rviz_satellite"]
+	path = src/rviz_satellite
+	url = https://github.com/nobleo/rviz_satellite.git
