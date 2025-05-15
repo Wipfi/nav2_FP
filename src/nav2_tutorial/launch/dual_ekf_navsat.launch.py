@@ -11,24 +11,24 @@ def generate_launch_description():
 
     return LaunchDescription([
         # # Spawn EKF node for local odometry
-        # Node(
-        #     package="robot_localization",
-        #     executable="ekf_node",
-        #     name="ekf_filter_node_odom",
-        #     output="screen",
-        #     parameters=[rl_params_file, {"use_sim_time": False}],
-        #     remappings=[("odometry/filtered", "odometry/local")],
-        # ),
+         Node(
+            package="robot_localization",
+            executable="ekf_node",
+            name="ekf_filter_node_odom",
+            output="screen",
+            parameters=[rl_params_file, {"use_sim_time": False}],
+             remappings=[("odometry/filtered", "odometry/local")],
+         ),
         
         # # Spawn EKF node for global odometry
-        # Node(
-        #     package="robot_localization",
-        #     executable="ekf_node",
-        #     name="ekf_filter_node_map",
-        #     output="screen",
-        #     parameters=[rl_params_file, {"use_sim_time": False}],
-        #     remappings=[("odometry/filtered", "odometry/global")],
-        # ),
+         Node(
+             package="robot_localization",
+             executable="ekf_node",
+             name="ekf_filter_node_map",
+             output="screen",
+             parameters=[rl_params_file, {"use_sim_time": False}],
+             remappings=[("odometry/filtered", "odometry/global")],
+         ),
         
         # Spawn Navsat transformation node
         Node(

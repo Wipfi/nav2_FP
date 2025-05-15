@@ -37,9 +37,9 @@ def generate_launch_description():
     )
 
     # Load robot model
-    scout_cmd = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(os.path.join(launch_dir, 'robot_description.launch.py'))
-    )
+    #scout_cmd = IncludeLaunchDescription(
+    #    PythonLaunchDescriptionSource(os.path.join(launch_dir, 'robot_description.launch.py'))
+    #)
 
     robot_localization_cmd = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(launch_dir, 'dual_ekf_navsat.launch.py'))
@@ -73,7 +73,6 @@ def generate_launch_description():
     ld.add_action(declare_use_mapviz_cmd)
 
     # Add actions
-    ld.add_action(scout_cmd)
     ld.add_action(robot_localization_cmd)
     ld.add_action(navigation2_cmd)
     ld.add_action(rviz_cmd)
