@@ -6,7 +6,7 @@ from launch import LaunchDescription
 
 
 def generate_launch_description():
-    rl_params_file = os.path.join(get_package_share_directory("nav2_tutorial"), 
+    rl_params_file = os.path.join(get_package_share_directory("ais_nav2_fp_tutorial"), 
                                   "config", "dual_ekf_navsat_params.yaml")
 
     return LaunchDescription([
@@ -36,10 +36,10 @@ def generate_launch_description():
             executable="navsat_transform_node",
             name="navsat_transform",
             output="screen",
-            parameters=[rl_params_file, {"use_sim_time": False}],
+            parameters=[rl_params_file, {"use_sim_time": False, "use_odometry_yaw": True}],
             remappings=[
                 ("imu/data", "/fixposition/poiimu"),      # (Input) Message with orientation data
-                ("odometry/filtered", "fixposition/odometry_enu"), # (Input) Robot's current position
+                ("odometry/filtered", "odometry/global"), # (Input) Robot's current position
                 ("gps/fix", "fixposition/odometry_llh"),  # (Input) Robot's GPS coordinates
                 ("odometry/gps", "odometry/gps"),         # (Output) Robot's GPS coordinates, transformed into its world frame
                 ("gps/filtered", "gps/filtered"),         # (Output) Robot’s world frame position, transformed into GPS coordinates

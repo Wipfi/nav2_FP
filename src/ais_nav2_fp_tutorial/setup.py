@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 import os
 from glob import glob
 
-package_name = 'nav2_tutorial'
+package_name = 'ais_nav2_fp_tutorial'
 
 setup(
     name=package_name,
@@ -13,8 +13,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         (os.path.join('share', package_name, 'launch'), glob('launch/*.launch*')),
-        (os.path.join('share', package_name, 'config'), glob('config/*')),
-        (os.path.join('share', package_name, 'urdf'), glob('urdf/*')),
+        (os.path.join('share', package_name, 'config'), glob('config/*'))
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -22,14 +21,5 @@ setup(
     maintainer_email='facundo.garcia@fixposition.com',
     description='GPS Waypoints Follower for AgileX Scout Mini',
     license='MIT',
-    tests_require=['pytest'],
-    entry_points={
-        'console_scripts': [
-            'logged_waypoint_follower = src.logged_waypoint_follower:main',
-            'interactive_waypoint_follower = src.interactive_waypoint_follower:main',
-            'gps_waypoint_logger = src.gps_waypoint_logger:main',
-            'terminal_logger = src.terminal_logger:main',
-            'set_datum = src.set_datum:main'
-        ],
-    },
+    tests_require=['pytest']
 )
