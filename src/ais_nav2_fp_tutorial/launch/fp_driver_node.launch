@@ -1,11 +1,19 @@
-<!-- https://design.ros2.org/articles/roslaunch_xml.html -->
 <launch>
-    <arg name="node_name"   default="fixposition_driver_ros2" description="Node name"/> <!--  -->
-    <arg name="config"      default="fp_driver_config.yaml"   description="Configuration file to use"/>
-    <arg name="launcher"    default=""                        description="Launch node via this (node launch-prefix)"/>
+    <arg name="node_name" default="fixposition_driver_ros2" description="Node name"/>
+    <arg name="config" default="fp_driver_config.yaml" description="Configuration file to use"/>
+    <arg name="launcher" default="" description="Launch node via this (node launch-prefix)"/>
+
     <node name="$(var node_name)" pkg="fixposition_driver_ros2" exec="fixposition_driver_ros2_exec"
-        output="screen" respawn="true" respawn_delay="5" launch-prefix="$(var launcher)"
-        ros_args="--log-level $(var node_name):=info">
+          output="screen" respawn="true" respawn_delay="5" launch-prefix="$(var launcher)"
+          ros_args="--log-level $(var node_name):=info">
+
         <param from="$(find-pkg-share ais_nav2_fp_tutorial)/config/$(var config)"/>
+
+
+        <remap from="/fixposition/odometry_enu" to="/localization/odometry/global"/>
+        <remap from="/fixposition/odometry_enu_smooth" to="/localization/odometry/local"/>
+        <remap from="/fixposition/odometry_llh" to="/localization/odometry/llh"/>
+        <remap from="/fixposition/poiimu" to="/sensors/imu/data"/>
+
     </node>
 </launch>

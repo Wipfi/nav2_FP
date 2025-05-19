@@ -31,10 +31,10 @@ def generate_launch_description():
         "nav2_gps_waypoint_follower_demo")
     fp_dir = get_package_share_directory("ais_nav2_fp_tutorial")
 
-    launch_dir = os.path.join(gps_wpf_dir, 'launch')
+    #launch_dir = os.path.join(gps_wpf_dir, 'launch')
     fp_launch_dir = os.path.join(fp_dir, 'launch')
     params_dir = os.path.join(gps_wpf_dir, "config")
-    fp_params_dir = os.path.join(fp_dir, "config")
+    #fp_params_dir = os.path.join(fp_dir, "config")
 
     nav2_params = os.path.join(params_dir, "nav2_no_map_params.yaml")
     configured_params = RewrittenYaml(
@@ -42,7 +42,6 @@ def generate_launch_description():
     )
 
     use_rviz = LaunchConfiguration('use_rviz')
-    use_mapviz = LaunchConfiguration('use_mapviz')
 
     declare_use_rviz_cmd = DeclareLaunchArgument(
         'use_rviz',
