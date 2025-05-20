@@ -13,7 +13,7 @@ The focus is on testing different localization setups using the [Waypoint Follow
 
 
 ## 🎯 Goal
-Evaluate multiple integration strategies combining global and local localization sources:
+The aim of this Repo is to have a cookbook for the integration of the Fixposition GNSS module for robot localization in Ros2:
 
 - Use Fixposition VRTK2 as the global localization provider (e.g., in `map` frame)
 - Combine with different sources of local odometry (wheel odometry, LiDAR odometry, or fused solutions)
