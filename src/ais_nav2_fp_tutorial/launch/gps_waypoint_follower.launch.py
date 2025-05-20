@@ -29,12 +29,9 @@ def generate_launch_description():
     bringup_dir = get_package_share_directory('nav2_bringup')
     gps_wpf_dir = get_package_share_directory(
         "nav2_gps_waypoint_follower_demo")
-    fp_dir = get_package_share_directory("ais_nav2_fp_tutorial")
 
-    #launch_dir = os.path.join(gps_wpf_dir, 'launch')
-    fp_launch_dir = os.path.join(fp_dir, 'launch')
     params_dir = os.path.join(gps_wpf_dir, "config")
-    #fp_params_dir = os.path.join(fp_dir, "config")
+    
 
     nav2_params = os.path.join(params_dir, "nav2_no_map_params.yaml")
     configured_params = RewrittenYaml(
@@ -48,10 +45,6 @@ def generate_launch_description():
         default_value='False',
         description='Whether to start RVIZ')
 
-    robot_localization_cmd = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(fp_launch_dir, 'dual_ekf_navsat.launch.py'))
-    )
 
     navigation2_cmd = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -61,7 +54,7 @@ def generate_launch_description():
             "use_sim_time": "True",
             "params_file": configured_params,
             "autostart": "True",
-        }.items(),
+        }.items()
     )
 
     rviz_cmd = IncludeLaunchDescription(
@@ -74,8 +67,6 @@ def generate_launch_description():
     # Create the launch description and populate
     ld = LaunchDescription()
 
-    # robot localization launch
-    ld.add_action(robot_localization_cmd)
 
     # navigation2 launch
     ld.add_action(navigation2_cmd)
